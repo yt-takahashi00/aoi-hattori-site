@@ -411,6 +411,10 @@ main { padding: 88px 0 120px; }
 .past-exhibitions dt { color: var(--muted); }
 .past-exhibitions dd { margin: 0; }
 
+/* ---------- contact SNS lead-in (2026-11-26) ---------- */
+.contact-sns-text { margin-top: 36px; }
+.contact-sns { margin-top: 14px; }
+
 
 /* ---------- language switch JA/EN (clean publish build only) ---------- */
 .lang-switch { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; margin-right: 26px; }
