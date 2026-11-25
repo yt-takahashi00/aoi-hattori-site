@@ -13,7 +13,6 @@
 .slide-name { position: fixed; top: 22px; left: 24px; z-index: 3; font-size: 15px; letter-spacing: .3em; color: var(--ink); }
 .slide-enter { position: fixed; left: 50%; bottom: 8vh; transform: translateX(-50%); z-index: 3; opacity: 0; pointer-events: none; transition: opacity 1.6s ease; font-size: 13px; letter-spacing: .35em; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 6px; }
 .slide-enter.show { opacity: 1; pointer-events: auto; }
-.slide-switcher { position: fixed; right: 14px; bottom: 12px; z-index: 3; background: var(--bg); opacity: .92; padding: 2px 8px; }
 </style>
 </head>
 <body>
@@ -30,14 +29,7 @@
 </div>
 <div class="slide-name">AOI HATTORI</div>
 <a class="slide-enter" href="en-works.html">WORKS</a>
-<div class="slide-switcher"><div class="wrap">
-  <nav class="variant-switch" aria-label="表示の切り替え">
-    <span class="group"><span class="label">Layout:</span><span class="current">Standard</span><a href="en-small-home-slide.html">Small</a><a href="en-dense-home-slide.html">Dense</a></span>
-    <span class="group"><span class="label">Background:</span><span class="current">White</span><a href="en-black-home-slide.html">Black</a></span>
-    <span class="group"><span class="label">Language:</span><a href="home-slide.html">日本語</a><span class="current">English</span></span>
-  </nav>
-</div>
-</div>
+
 <script>
 (function () {
   var slides = document.querySelectorAll(".slide-img");
@@ -51,7 +43,7 @@
   }
   var enter = document.querySelector(".slide-enter");
   function reveal() { if (enter) enter.classList.add("show"); }
-  setTimeout(reveal, 9000);
+  setTimeout(reveal, 4000);
   document.addEventListener("click", reveal);
 })();
 </script>
