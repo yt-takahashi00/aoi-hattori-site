@@ -357,6 +357,51 @@ main { padding: 64px 0 96px; }
   .sample-note { margin-bottom: 32px; }
 }
 
+/* ---------- feedback revision: sticky header, larger name, no italic titles,
+   footer SNS icons, contact page, mobile hamburger nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 20;
+}
+.site-name { font-size: 26px; }
+.work-caption .t .latin,
+.work-data h1 .latin { font-style: normal; }
+.nav-toggle { display: none; }
+.nav-button { display: none; }
+.footer-sns { margin: 14px 0 0; }
+.sns-icons { display: inline-flex; gap: 16px; align-items: center; color: var(--muted); }
+.sns-icon { display: inline-flex; }
+.contact-body p { max-width: 640px; }
+.contact-email { font-size: 17px; font-weight: 500; margin-top: 28px; }
+.contact-email a { border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+.contact-sns { margin-top: 36px; }
+@media (max-width: 600px) {
+  .site-name { font-size: 22px; }
+  .nav-button {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 4px;
+    cursor: pointer;
+  }
+  .nav-button span { display: block; width: 22px; height: 1.5px; background: var(--ink); }
+  .site-nav {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 8px;
+  }
+  .site-nav a { padding: 10px 0; border-top: 1px solid var(--border); }
+  .nav-toggle:checked ~ .site-nav { display: flex; }
+}
+
+/* ---- real artwork images ---- */
+.panel.has-image { background: #f4f4f4; }
+.panel img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
 
 /* ---------- dense grid: 6 columns (clean publish build) ---------- */
 main { padding: 64px 0 96px; }
