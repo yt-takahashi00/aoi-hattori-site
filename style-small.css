@@ -1,0 +1,397 @@
+/* AOI HATTORI — official portfolio site (v1, static)
+   Design tokens per design-guidelines-v1.md (ChatGPT consultation, 2026-11-25):
+   white base, single sans family, regular CSS Grid, original aspect ratios.
+   No gradients, no shadows, no rounded cards, no JavaScript.
+   Fonts are system stacks only — no external resources, works fully offline. */
+
+:root {
+  --bg: #FFFFFF;
+  --ink: #141414;
+  --muted: #666666;
+  --border: #D9D9D9;
+  --placeholder: #F2F2F2;
+  --sans: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic",
+          Meiryo, "Noto Sans JP", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--muted); }
+a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ---------- layout ---------- */
+.wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 56px;
+}
+
+/* ---------- header ---------- */
+.site-header {
+  border-bottom: 1px solid var(--border);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 32px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.site-name {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.site-nav a { padding-bottom: 3px; color: var(--muted); }
+.site-nav a:hover { color: var(--ink); }
+.site-nav a.current { color: var(--ink); border-bottom: 1px solid var(--ink); }
+
+/* ---------- generic ---------- */
+main { padding: 88px 0 120px; }
+
+.page-title {
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0 0 24px;
+}
+.page-title .en {
+  font-size: 13px;
+  font-weight: normal;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-left: 14px;
+}
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 24px;
+  text-transform: uppercase;
+}
+.sample-note {
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  margin: 0 0 56px;
+  line-height: 1.8;
+}
+.link-more {
+  display: inline-block;
+  margin-top: 28px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+}
+.link-more:hover { color: var(--ink); border-color: var(--ink); }
+.text-link { border-bottom: 1px solid var(--border); }
+.text-link:hover { color: var(--ink); border-color: var(--ink); }
+
+/* key-value definition list (home exhibition summary etc.) */
+.kv {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  column-gap: 24px;
+  row-gap: 10px;
+  margin: 0;
+  font-size: 14px;
+}
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; }
+
+/* ---------- artwork placeholder panel ---------- */
+.panel {
+  background: var(--tone, var(--placeholder));
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.panel .panel-title {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  padding: 16px;
+  text-align: center;
+}
+.panel .panel-title small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ---------- works grid (regular CSS Grid, original aspect ratios) ---------- */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 36px;
+  row-gap: 64px;
+  align-items: start;
+}
+.work-item { margin: 0; }
+.work-item a { display: block; }
+.work-item a:hover .panel { border-color: #b5b5b5; }
+.work-caption { margin-top: 12px; }
+.work-caption .t {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.work-caption .t .latin { font-style: italic; }
+.work-caption .meta {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ---------- home ---------- */
+.home-exhibition {
+  margin-top: 112px;
+  border-top: 1px solid var(--border);
+  padding-top: 40px;
+}
+
+/* ---------- artwork detail ---------- */
+.work-detail .panel {
+  max-width: 900px;
+  margin-bottom: 28px;
+}
+.work-data h1 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0 0 16px;
+}
+.work-data h1 .latin { font-style: italic; }
+.work-data dl {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  column-gap: 24px;
+  row-gap: 4px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.work-data dt { color: var(--muted); }
+.work-data dd { margin: 0; }
+.work-text {
+  max-width: 640px;
+  margin-top: 40px;
+  font-size: 15px;
+  line-height: 1.9;
+}
+.work-text p { margin: 0 0 1.4em; }
+.work-detail .sample-note { margin: 48px 0 0; }
+.work-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid var(--border);
+  margin-top: 64px;
+  padding-top: 24px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.work-nav a:hover { color: var(--ink); }
+.work-nav .spacer { flex: 1; }
+
+/* ---------- about / cv ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 72px;
+  align-items: start;
+}
+.portrait .panel-title { font-size: 12px; }
+.about-body section { margin-bottom: 88px; }
+.about-body section:last-child { margin-bottom: 0; }
+.about-body h2 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0 0 24px;
+}
+.about-body p { margin: 0 0 1.4em; max-width: 640px; }
+.cv-block { margin-bottom: 40px; }
+.cv-block:last-child { margin-bottom: 0; }
+.cv-block h3 {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin: 0 0 12px;
+}
+.cv-block h3 .en {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 0.06em;
+  margin-left: 10px;
+}
+.cv-list { list-style: none; margin: 0; padding: 0; }
+.cv-list li {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  column-gap: 24px;
+  padding: 5px 0;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.cv-list .year { color: var(--muted); }
+.placeholder-text { color: var(--muted); }
+
+/* ---------- exhibition ---------- */
+.exhibition-detail dl {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  column-gap: 24px;
+  row-gap: 10px;
+  margin: 0 0 32px;
+  font-size: 15px;
+}
+.exhibition-detail dt { color: var(--muted); }
+.exhibition-detail dd { margin: 0; }
+.exhibition-detail h2 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0 0 24px;
+}
+.exhibition-detail p { max-width: 640px; margin: 0 0 1.4em; }
+.past-exhibitions {
+  border-top: 1px solid var(--border);
+  margin-top: 80px;
+  padding-top: 40px;
+}
+
+/* ---------- footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0 40px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px 24px;
+  flex-wrap: wrap;
+  margin: 0;
+  letter-spacing: 0.06em;
+}
+.footer-main a { color: var(--muted); }
+.footer-main a:hover { color: var(--ink); }
+.footer-note {
+  margin: 14px 0 0;
+  font-size: 11px;
+  line-height: 1.7;
+  max-width: 720px;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1099px) {
+  .works-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 28px;
+    row-gap: 56px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrap { padding: 0 20px; }
+  .site-header .wrap { padding-top: 20px; padding-bottom: 20px; }
+  .site-name { font-size: 16px; }
+  .site-nav { gap: 24px; }
+  main { padding: 56px 0 80px; }
+  .page-title { font-size: 26px; }
+  .about-body h2, .exhibition-detail h2 { font-size: 18px; }
+  .works-grid {
+    grid-template-columns: 1fr;
+    row-gap: 48px;
+  }
+  .home-exhibition { margin-top: 72px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .portrait { max-width: 280px; }
+  .about-body section { margin-bottom: 64px; }
+  .work-data dl, .exhibition-detail dl, .kv { grid-template-columns: 80px 1fr; }
+  .sample-note { margin-bottom: 40px; }
+}
+
+
+/* ---------- small grid: 4 columns (clean publish build) ---------- */
+.works-grid {
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 24px;
+  row-gap: 44px;
+}
+.work-caption { margin-top: 10px; }
+.work-caption .t { font-size: 14px; }
+.work-caption .meta { font-size: 11px; }
+@media (max-width: 1099px) {
+  .works-grid {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 24px;
+    row-gap: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .works-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 16px;
+    row-gap: 32px;
+  }
+}
+
+
+/* ---------- variation switcher (clean publish build only) ---------- */
+.variant-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  padding-top: 14px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.variant-switch .group { display: flex; gap: 12px; align-items: baseline; }
+.variant-switch a { color: var(--muted); }
+.variant-switch a:hover { color: var(--ink); }
+.variant-switch .current {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+}
