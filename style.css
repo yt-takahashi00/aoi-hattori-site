@@ -397,21 +397,9 @@ main { padding: 88px 0 120px; }
 .panel img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 
-/* ---------- variation switcher (clean publish build only) ---------- */
-.variant-switch {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 32px;
-  padding-top: 14px;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-}
-.variant-switch .group { display: flex; gap: 12px; align-items: baseline; }
-.variant-switch a { color: var(--muted); }
-.variant-switch a:hover { color: var(--ink); }
-.variant-switch .current {
-  color: var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 2px;
-}
+/* ---------- language switch JA/EN (clean publish build only) ---------- */
+.lang-switch { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; }
+.lang-switch a { color: var(--muted); }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch .current { color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+.lang-switch .sep { color: var(--border); }
