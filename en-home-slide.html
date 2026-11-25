@@ -7,44 +7,114 @@
 <title>Slideshow | AOI HATTORI</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.slide-stage { position: fixed; inset: 0; background: var(--bg); }
-.slide-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 1.6s ease; }
+.slide-layout { height: 100vh; height: 100svh; display: grid; grid-template-rows: 72px minmax(0, 1fr) 104px; background: var(--bg); color: var(--ink); }
+.slide-header { display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(20px, 4vw, 56px); }
+.slide-name { font-size: 15px; letter-spacing: .3em; }
+.slide-lang { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .14em; }
+.slide-lang a { color: var(--muted); }
+.slide-lang a:hover { color: var(--ink); }
+.slide-lang .current { color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+.slide-lang .sep { color: var(--border); }
+.slide-stage { position: relative; min-width: 0; min-height: 0; margin: 24px clamp(20px, 4vw, 56px); overflow: hidden; }
+.slide-img { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .9s ease; }
 .slide-img.on { opacity: 1; }
-.slide-name { position: fixed; top: 22px; left: 24px; z-index: 3; font-size: 15px; letter-spacing: .3em; color: var(--ink); }
-.slide-enter { position: fixed; left: 50%; bottom: 8vh; transform: translateX(-50%); z-index: 3; opacity: 0; pointer-events: none; transition: opacity 1.6s ease; font-size: 13px; letter-spacing: .35em; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 6px; }
-.slide-enter.show { opacity: 1; pointer-events: auto; }
+.slide-footer { position: relative; display: grid; place-items: center; }
+.slide-enter { font-size: 13px; letter-spacing: .25em; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 5px; animation: slide-fadein 1.2s ease .3s both; }
+.slide-enter:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+@keyframes slide-fadein { from { opacity: 0; } to { opacity: 1; } }
+.slide-toggle { position: absolute; right: clamp(20px, 4vw, 56px); top: 50%; transform: translateY(-50%); background: none; border: none; font: inherit; font-size: 11px; letter-spacing: .18em; color: var(--muted); cursor: pointer; padding: 8px 4px; }
+.slide-toggle:hover { color: var(--ink); }
+@media (max-width: 600px) {
+  .slide-layout { grid-template-rows: 64px minmax(0, 1fr) calc(88px + env(safe-area-inset-bottom)); }
+  .slide-stage { margin: 16px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide-img { transition: none; }
+  .slide-enter { animation: none; }
+}
 </style>
 </head>
 <body>
-<div class="slide-stage">
-  <img class="slide-img" src="img-simulation.jpg" alt="SIMULATION">
-  <img class="slide-img" src="img-one-round.jpg" alt="ONE ROUND">
-  <img class="slide-img" src="img-diversity-painting.jpg" alt="A Painting on the Use of Diversity for the Sake of Expression">
-  <img class="slide-img" src="img-succession-no2.jpg" alt="Succession No.2">
-  <img class="slide-img" src="img-mountain-armor.jpg" alt="Mountain-Devouring Armor">
-  <img class="slide-img" src="img-food-additives.jpg" alt="Food additives and Surrealism">
-  <img class="slide-img" src="img-take-back-love.jpg" alt="Take back the love!!">
-  <img class="slide-img" src="img-messiah-light.jpg" alt="Messiah of the Land of Light">
-  <img class="slide-img" src="img-two-kaiju.jpg" alt="Two Kaiju">
+<div class="slide-layout">
+  <header class="slide-header">
+    <span class="slide-name">AOI HATTORI</span>
+    <span class="slide-lang"><a href="home-slide.html">JA</a><span class="sep">|</span><span class="current">EN</span></span>
+  </header>
+  <main class="slide-stage">
+  <img class="slide-img" src="img-simulation.jpg" width="1170" height="943" alt="SIMULATION">
+  <img class="slide-img" src="img-one-round.jpg" width="1170" height="973" alt="ONE ROUND">
+  <img class="slide-img" src="img-diversity-painting.jpg" width="1146" height="1427" alt="A Painting on the Use of Diversity for the Sake of Expression">
+  <img class="slide-img" src="img-succession-no2.jpg" width="1170" height="932" alt="Succession No.2">
+  <img class="slide-img" src="img-mountain-armor.jpg" width="1170" height="992" alt="Mountain-Devouring Armor">
+  <img class="slide-img" src="img-food-additives.jpg" width="1170" height="867" alt="Food additives and Surrealism">
+  <img class="slide-img" src="img-take-back-love.jpg" width="1126" height="1453" alt="Take back the love!!">
+  <img class="slide-img" src="img-messiah-light.jpg" width="1120" height="1461" alt="Messiah of the Land of Light">
+  <img class="slide-img" src="img-two-kaiju.jpg" width="1170" height="723" alt="Two Kaiju">
+  </main>
+  <footer class="slide-footer">
+    <a class="slide-enter" href="en-works.html">WORKS</a>
+    <button class="slide-toggle" type="button">PAUSE</button>
+  </footer>
 </div>
-<div class="slide-name">AOI HATTORI</div>
-<a class="slide-enter" href="en-works.html">WORKS</a>
-
 <script>
 (function () {
-  var slides = document.querySelectorAll(".slide-img");
+  var stage = document.querySelector(".slide-stage");
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide-img"));
+  var toggle = document.querySelector(".slide-toggle");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function normalize() {
+    if (!stage || !slides.length) return;
+    var maxW = stage.clientWidth * 0.90;
+    var maxH = stage.clientHeight * 0.92;
+    var items = [];
+    slides.forEach(function (img) {
+      var w = Number(img.getAttribute("width"));
+      var h = Number(img.getAttribute("height"));
+      if (!w || !h) return;
+      var ratio = w / h;
+      var maxArea = Math.min((maxW * maxW) / ratio, (maxH * maxH) * ratio);
+      items.push({ img: img, ratio: ratio, maxArea: maxArea });
+    });
+    if (!items.length) return;
+    var common = Math.min.apply(null, items.map(function (it) { return it.maxArea; }));
+    var target = common * 1.12;
+    items.forEach(function (it) {
+      var area = Math.min(target, it.maxArea);
+      it.img.style.width = Math.sqrt(area * it.ratio) + "px";
+      it.img.style.height = Math.sqrt(area / it.ratio) + "px";
+    });
+  }
   var i = 0;
+  var timer = null;
+  var playing = false;
   function show(n) {
     slides.forEach(function (el, k) { el.classList.toggle("on", k === n); });
   }
+  function play() {
+    if (timer || slides.length < 2) return;
+    timer = setInterval(function () { i = (i + 1) % slides.length; show(i); }, 7000);
+    playing = true;
+    if (toggle) toggle.textContent = "PAUSE";
+  }
+  function pause() {
+    if (timer) { clearInterval(timer); timer = null; }
+    playing = false;
+    if (toggle) toggle.textContent = "PLAY";
+  }
   if (slides.length) {
     show(0);
-    setInterval(function () { i = (i + 1) % slides.length; show(i); }, 4000);
+    normalize();
   }
-  var enter = document.querySelector(".slide-enter");
-  function reveal() { if (enter) enter.classList.add("show"); }
-  setTimeout(reveal, 4000);
-  document.addEventListener("click", reveal);
+  window.addEventListener("resize", normalize);
+  window.addEventListener("load", normalize);
+  if (!reduce) {
+    play();
+  } else if (toggle) {
+    toggle.textContent = "PLAY";
+  }
+  if (toggle) {
+    toggle.addEventListener("click", function () { if (playing) { pause(); } else { play(); } });
+  }
 })();
 </script>
 </body>

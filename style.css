@@ -404,6 +404,13 @@ main { padding: 88px 0 120px; }
   .nav-button { padding-right: 0; }
 }
 
+/* ---------- past exhibitions list (2026-11-26) ---------- */
+.past-exhibitions h2 { font-size: 20px; font-weight: 500; margin: 0 0 16px; }
+.past-exhibition { margin-bottom: 44px; }
+.past-exhibitions dl { display: grid; grid-template-columns: 80px 1fr; gap: 6px 24px; margin: 0 0 20px; font-size: 14px; line-height: 1.75; }
+.past-exhibitions dt { color: var(--muted); }
+.past-exhibitions dd { margin: 0; }
+
 
 /* ---------- language switch JA/EN (clean publish build only) ---------- */
 .lang-switch { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; margin-right: 26px; }
